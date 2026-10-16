@@ -29,3 +29,11 @@ Theme from Jeff: **IYKYK.** The inside track, straight talk, no agency nonsense,
 Sections: hero (office video + animated Tanngrisnir, "Every town has one GOAT."), the secret, four places (Search, AI answers, Maps, The feed), the inside track form, who we serve, the Code (six rules), the founder ("Fifty years in. Still early."), close ("Every town has one GOAT. Might as well be you.").
 Menu: The secret / Where you get found / Who we serve (practice-area dropdown) / The Code / The founder + "Get the inside track" button. Mobile: full-screen menu.
 Facts used, all from Jeff's own statements, to be confirmed by him: 27-year client who left to retire; one bundled price, no upsells; bills more than competitors; HotDog documentation; 17 years running HSN retail systems; negotiated with Google over the hsn.com product feed; own servers and automation; nothing published without client approval; competitors not taken on (CONFIRM: this is a new claim).
+
+## To do (Jeff, 2026-10-16)
+
+- **Founder's page**: Jeff Folkersen, full story (expands the home-page founder section).
+- **About Tanngrisnir page**: who the GOAT is and why he's JB's mascot (Thor's goat; "there's a secret to being a big beautiful GOAT").
+- Repo `Jurisbranded/jurisbranded-site` is Public; other site repos are private. Switch to Private.
+- Jeff to confirm the facts used on the home page (see "Home page first pass"), especially "Your competitors are not our clients."
+- Forms: Turnstile widget + `TURNSTILE_SECRET`, and add `jurisbranded.com` to the n8n SITES table.

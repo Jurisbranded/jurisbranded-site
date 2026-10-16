@@ -1,0 +1,6 @@
+/* JurisBranded stage. Design tokens arrive with the design; this file is deliberately bare. */
+:root { --ink: #10131c; --paper: #ffffff; }
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 16px/1.6 system-ui, -apple-system, 'Segoe UI', sans-serif; }
+img, video { max-width: 100%; height: auto; display: block; }

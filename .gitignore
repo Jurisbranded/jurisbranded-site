@@ -1,0 +1,7 @@
+node_modules
+dist
+.wrangler
+shots
+.astro
+*.log
+__pycache__/

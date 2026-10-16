@@ -1,0 +1,20 @@
+{
+  "name": "jurisbranded-site",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build && node tools/make-redirects.mjs && node tools/make-worker.mjs",
+    "preview": "wrangler pages dev dist --port 8788 --compatibility-date=2026-10-08"
+  },
+  "dependencies": {
+    "@astrojs/rss": "^4.0.19",
+    "@astrojs/sitemap": "^3.7.4",
+    "astro": "^7.3.3"
+  },
+  "devDependencies": {
+    "playwright-core": "1.56",
+    "wrangler": "^4.136.1"
+  }
+}

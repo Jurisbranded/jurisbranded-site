@@ -1,6 +1,14 @@
 ---
+// Fonts: Latin subsets only, self-hosted, declared here.
+import frauncesItalic from '@fontsource-variable/fraunces/files/fraunces-latin-opsz-italic.woff2?url';
+import frauncesNormal from '@fontsource-variable/fraunces/files/fraunces-latin-opsz-normal.woff2?url';
+import jost300 from '@fontsource/jost/files/jost-latin-300-normal.woff2?url';
+import jost400 from '@fontsource/jost/files/jost-latin-400-normal.woff2?url';
+import jost500 from '@fontsource/jost/files/jost-latin-500-normal.woff2?url';
 import '../styles/global.css';
 import { SITE } from '../site.config.mjs';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 
 interface Props {
   title: string;
@@ -9,11 +17,20 @@ interface Props {
   ogType?: 'website' | 'article';
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
   noindex?: boolean;
+  preload?: string;
 }
-const { title, description, ogImage = SITE.ogImage, ogType = 'website', jsonLd, noindex = false } = Astro.props;
+const { title, description, ogImage = SITE.ogImage, ogType = 'website', jsonLd, noindex = false, preload } = Astro.props;
 const canonical = new URL(Astro.url.pathname, SITE.url).href;
-const org = { '@context': 'https://schema.org', '@type': 'Organization', '@id': `${SITE.url}/#org`, name: SITE.name, url: `${SITE.url}/` };
+const org = { '@context': 'https://schema.org', '@type': 'ProfessionalService', '@id': `${SITE.url}/#org`, name: SITE.name, url: `${SITE.url}/`,
+  description: 'Legal marketing for law firms: search, AI answers, maps and social, built so clients find the firm first.',
+  founder: { '@type': 'Person', name: 'Jeff Folkersen' } };
 const ld = [org, ...(jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [])];
+const LATIN = 'U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD';
+const face = (fam: string, style: string, w: string, url: string) => `@font-face{font-family:'${fam}';font-style:${style};font-display:swap;font-weight:${w};src:url(${url}) format('woff2');unicode-range:${LATIN}}`;
+const faces = [
+  face('Fraunces', 'italic', '100 900', frauncesItalic), face('Fraunces', 'normal', '100 900', frauncesNormal),
+  face('Jost', 'normal', '300', jost300), face('Jost', 'normal', '400', jost400), face('Jost', 'normal', '500', jost500),
+].join('\n');
 ---
 <!doctype html>
 <html lang={SITE.lang}>
@@ -24,9 +41,14 @@ const ld = [org, ...(jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [])]
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     {noindex && <meta name="robots" content="noindex, follow" />}
+    <link rel="preload" href={frauncesItalic} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={jost300} as="font" type="font/woff2" crossorigin />
+    {preload && <link rel="preload" as="image" href={preload} fetchpriority="high" />}
+    <style is:inline set:html={faces}></style>
     <link rel="icon" href={SITE.favicon} type="image/svg+xml" />
     <link rel="alternate" type="application/rss+xml" title={`${SITE.name} RSS`} href="/rss.xml" />
     <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta name="theme-color" content="#06080F" />
     <meta property="og:site_name" content={SITE.name} />
     <meta property="og:locale" content="en_US" />
     <meta property="og:type" content={ogType} />
@@ -38,6 +60,9 @@ const ld = [org, ...(jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [])]
     <script type="application/ld+json" set:html={JSON.stringify(ld)} />
   </head>
   <body>
-    <slot />
+    <a class="skip" href="#main">Skip to content</a>
+    <Header />
+    <main id="main"><slot /></main>
+    <Footer />
   </body>
 </html>

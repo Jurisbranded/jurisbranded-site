@@ -1,0 +1,69 @@
+---
+import { SITE } from '../site.config.mjs';
+---
+<header class="site-header" data-header>
+  <div class="wrap header-row">
+    <a class="mark" href="/" aria-label="JurisBranded home">Juris<b>Branded</b></a>
+
+    <nav class="menu" id="menu" aria-label="Main">
+      <ul>
+        {SITE.nav.map((item, i) => (
+          <li class={item.children ? 'has-sub' : undefined}>
+            {item.children ? (
+              <>
+                <button type="button" class="sub-toggle" aria-expanded="false" aria-controls={`sub-${i}`}>
+                  {item.label}<svg viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5l5 5 5-5" /></svg>
+                </button>
+                <ul class="sub" id={`sub-${i}`}>
+                  {item.children.map((c) => <li><a href={c.href}>{c.label}</a></li>)}
+                </ul>
+              </>
+            ) : (
+              <a href={item.href}>{item.label}</a>
+            )}
+          </li>
+        ))}
+      </ul>
+      <a class="btn btn-gold menu-cta" href={SITE.cta.href}>{SITE.cta.label}</a>
+    </nav>
+
+    <a class="btn btn-gold header-cta" href={SITE.cta.href}>{SITE.cta.label}</a>
+    <button type="button" class="burger" aria-expanded="false" aria-controls="menu" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<script>
+  const header = document.querySelector('[data-header]') as HTMLElement;
+  const burger = header.querySelector('.burger') as HTMLButtonElement;
+  const setSolid = () => header.classList.toggle('solid', window.scrollY > 40 || header.classList.contains('open'));
+  window.addEventListener('scroll', setSolid, { passive: true });
+  setSolid();
+
+  burger.addEventListener('click', () => {
+    const open = !header.classList.contains('open');
+    header.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', String(open));
+    burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    document.body.classList.toggle('menu-open', open);
+    setSolid();
+  });
+
+  header.querySelectorAll<HTMLButtonElement>('.sub-toggle').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const li = btn.parentElement as HTMLElement;
+      const open = !li.classList.contains('show');
+      header.querySelectorAll('.has-sub.show').forEach((o) => { o.classList.remove('show'); o.querySelector('.sub-toggle')?.setAttribute('aria-expanded', 'false'); });
+      li.classList.toggle('show', open);
+      btn.setAttribute('aria-expanded', String(open));
+    });
+  });
+  document.addEventListener('click', (e) => {
+    if (!(e.target as HTMLElement).closest('.has-sub')) header.querySelectorAll('.has-sub.show').forEach((o) => { o.classList.remove('show'); o.querySelector('.sub-toggle')?.setAttribute('aria-expanded', 'false'); });
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') { header.querySelectorAll('.has-sub.show').forEach((o) => o.classList.remove('show')); if (header.classList.contains('open')) burger.click(); }
+  });
+  header.querySelectorAll('.menu a').forEach((a) => a.addEventListener('click', () => { if (header.classList.contains('open')) burger.click(); }));
+</script>

@@ -4,15 +4,30 @@ export const SITE = {
   domain: 'jurisbranded.com',
   name: 'JurisBranded',
   legalName: 'JurisBranded',
-  tagline: 'Legal marketing for law firms',
+  tagline: 'Every town has one GOAT. Might as well be you.',
   lang: 'en-US',
   logo: '',
   favicon: '/favicon.svg',
-  ogImage: '',
-  contactPath: '/contact/',
+  ogImage: '/media/office_poster.jpg',
+  contactPath: '/#inside',
   analyticsTags: [],           // none on the stage
   social: [],
-  nav: [],
+  // Main menu. Anchors on the home page until the inner pages exist.
+  nav: [
+    { label: 'The secret', href: '/#secret' },
+    { label: 'Where you get found', href: '/#find' },
+    { label: 'Who we serve', href: '/#serve', children: [
+      { label: 'Personal injury', href: '/#serve' },
+      { label: "Creditors' rights & collections", href: '/#serve' },
+      { label: 'Family law', href: '/#serve' },
+      { label: 'Estate planning & probate', href: '/#serve' },
+      { label: 'Criminal defense', href: '/#serve' },
+      { label: 'Business & corporate', href: '/#serve' },
+    ] },
+    { label: 'The Code', href: '/#code' },
+    { label: 'The founder', href: '/#founder' },
+  ],
+  cta: { label: 'Get the inside track', href: '/#inside' },
   // Cloudflare Turnstile: set a real sitekey before forms go live. The matching secret is TURNSTILE_SECRET on the Pages project.
   TURNSTILE_SITEKEY: '',
 };

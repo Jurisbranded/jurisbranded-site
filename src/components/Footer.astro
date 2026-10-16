@@ -1,0 +1,22 @@
+---
+import { SITE } from '../site.config.mjs';
+const year = new Date().getFullYear();
+---
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div class="footer-brand">
+      <a class="mark" href="/">Juris<b>Branded</b></a>
+      <p>{SITE.tagline}</p>
+    </div>
+    <nav aria-label="Footer">
+      <ul>
+        {SITE.nav.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+        <li><a href={SITE.cta.href}>{SITE.cta.label}</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="wrap footer-legal">
+    <span>© {year} {SITE.legalName}. A StudioHOF company.</span>
+    <span>Marketing for law firms. We are not a law firm and do not give legal advice.</span>
+  </div>
+</footer>

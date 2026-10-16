@@ -1,11 +1,205 @@
 ---
+// Home page. Writing system: AIDA spine + challenger reframe, in the IYKYK insider voice (BUILD-LOG.md, 2026-10-16).
+// Attention = hero (the wink). Interest = the secret, said plainly. Desire = the four places, the Code, the founder. Action = the inside track.
 import Base from '../layouts/Base.astro';
+
+const places = [
+  { name: 'Search', line: 'Page one for the cases you want, in the towns you serve. Not for your firm name. Anyone can rank for that.' },
+  { name: 'AI answers', line: 'People now ask ChatGPT, Gemini and Google’s AI who to call. Those answers are being written right now. We make sure they name you.' },
+  { name: 'Maps', line: 'Three firms show on the map. Those three get the calls. You will be one of them.' },
+  { name: 'The feed', line: 'Your face in their feed long before they need a lawyer, so on the worst day of their year, yours is the name they already trust.' },
+];
+
+const practices = ['Personal injury', 'Creditors’ rights & collections', 'Family law', 'Estate planning & probate', 'Criminal defense', 'Business & corporate'];
+
+const code = [
+  { head: 'We report cases, not clicks.', body: 'Traffic charts are how agencies hide. You get the calls, the cases and where each one came from. That’s the report.' },
+  { head: 'One price. Everything in it.', body: 'Search, AI, maps, social, video and the site itself. We will never call you with an upsell.' },
+  { head: 'We are not the cheapest.', body: 'We are the last agency you will hire. Our longest client stayed with us twenty-seven years and left only to retire.' },
+  { head: 'Nothing goes live without your yes.', body: 'Every article, post and page passes your approval first. Your name, your license, your call.' },
+  { head: 'We own our machinery.', body: 'Our servers, our automation, our AI. When a platform changes the rules, you never notice.' },
+  { head: 'Your competitors are not our clients.', body: 'We do not sell your market to the firm across the street.' },
+];
 ---
-<Base title="JurisBranded" description="JurisBranded builds the places where clients find your law firm: search, AI answers, maps and social.">
-  <main style="min-height:100vh;display:grid;place-items:center;padding:2rem;text-align:center">
-    <div>
-      <h1 style="margin:0;font-size:clamp(2rem,6vw,4rem);letter-spacing:-.02em">JurisBranded</h1>
-      <p style="margin:.5rem 0 0;color:#5a6070">Stage ready.</p>
+<Base
+  title="JurisBranded | The inside track for law firms"
+  description="Every town has one firm everyone calls. Search, AI answers, maps and the feed all name it first. JurisBranded is how it got there. If you know, you know."
+  preload="/media/office_poster.webp"
+>
+  <!-- ATTENTION -->
+  <section class="hero" aria-labelledby="hero-h">
+    <div class="hero-sky" id="sky">
+      <video id="office" autoplay muted loop playsinline preload="auto" poster="/media/office_poster.webp" aria-hidden="true">
+        <source src="/media/office_loop.webm" type="video/webm" />
+        <source src="/media/office_loop.mp4" type="video/mp4" />
+      </video>
     </div>
-  </main>
+    <div class="hero-veil"></div>
+    <div class="goat" id="goat">
+      <img src="/media/tg_wink_first.webp" width="960" height="960" alt="Tanngrisnir, the JurisBranded goat, in a pinstripe suit in his corner office" />
+      <video id="tgv" muted playsinline preload="auto" aria-hidden="true"><source src="/media/tg_wink.webm" type="video/webm" /></video>
+    </div>
+    <div class="wrap hero-copy">
+      <h1 id="hero-h">
+        <span class="quiet">Every town has one</span>
+        <span class="loud">GOAT.<svg class="stroke draw" viewBox="0 0 400 60" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="brass" x1="0" x2="1"><stop offset="0" stop-color="#B8752E"/><stop offset=".55" stop-color="#E2A93F"/><stop offset="1" stop-color="#F5D488"/></linearGradient></defs><path pathLength="1" d="M6 34 L188 26 L168 46 L394 18"/></svg></span>
+      </h1>
+      <p class="lede">The firm everyone calls. The name that comes up first, every time, everywhere they look. There’s a secret to it. <strong>If you know, you know.</strong></p>
+      <div class="cta-row">
+        <a class="btn btn-gold" href="#inside">Get the inside track</a>
+        <a class="text-link" href="#secret">Or hear the secret first</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTEREST: the secret, said plainly -->
+  <section class="band band-light reframe" id="secret" aria-labelledby="reframe-h">
+    <div class="wrap narrow">
+      <p class="kicker">Here’s the secret</p>
+      <h2 id="reframe-h" class="statement">The best lawyer in town doesn’t get the call. <em>The one they find first does.</em></h2>
+      <p class="body-lg">Your competitors are not better lawyers. They are easier to find. That’s it. That’s the whole secret. Everything else an agency tells you is a slide deck with your logo on it.</p>
+      <p class="body-lg">The firms at the top already know this. They stopped arguing with it and started owning every place a client looks.</p>
+    </div>
+  </section>
+
+  <!-- DESIRE: the four places -->
+  <section class="band band-dark places" id="find" aria-labelledby="find-h">
+    <div class="wrap">
+      <header class="sec-head">
+        <h2 id="find-h">Four places. <em>One name.</em></h2>
+        <p>A person with a legal problem checks four places before they pick up the phone. The GOAT shows up in all four. We put you there and keep you there.</p>
+      </header>
+      <ul class="place-list">
+        {places.map((p) => (
+          <li><h3>{p.name}</h3><p>{p.line}</p></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- ACTION, early: the inside track -->
+  <section class="band band-gold gaps" id="inside" aria-labelledby="inside-h">
+    <div class="wrap gaps-grid">
+      <div class="gaps-copy">
+        <h2 id="inside-h">We’ve got this. <em>You don’t have to.</em></h2>
+        <p>You didn’t go to law school to learn algorithms, ad auctions and whatever Google changed this week. Good. That’s our job, and it’s the only job we do.</p>
+        <ul class="ticks">
+          <li>One conversation with the founder, not a sales team</li>
+          <li>Straight answers about your market, including the ones you won’t like</li>
+          <li>If we’re not the right fit, we’ll say so</li>
+        </ul>
+      </div>
+      <form class="gap-form" method="post" action="/api/contact" data-form>
+        <input type="hidden" name="form" value="inside-track" />
+        <input type="hidden" name="_req" value="name,firm,email" />
+        <input type="hidden" name="ts" value="" />
+        <div class="hp" aria-hidden="true"><label>Website <input type="text" name="website" tabindex="-1" autocomplete="off" /></label></div>
+        <label>Your name<input id="i-name" name="name" type="text" autocomplete="name" required /></label>
+        <label>Firm<input id="i-firm" name="firm" type="text" autocomplete="organization" required /></label>
+        <label>Email<input id="i-email" name="email" type="email" autocomplete="email" required /></label>
+        <label>Phone<input id="i-phone" name="phone" type="tel" autocomplete="tel" /></label>
+        <label class="wide">Where do you want to be the GOAT?<input id="i-where" name="market" type="text" placeholder="Practice area and city, e.g. personal injury in Tampa" /></label>
+        <button class="btn btn-ink wide" type="submit">Get the inside track</button>
+        <p class="form-note wide" role="status" data-form-status></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- DESIRE: who we serve -->
+  <section class="band band-light serve" id="serve" aria-labelledby="serve-h">
+    <div class="wrap">
+      <h2 id="serve-h" class="statement small">Built for firms that intend <em>to win.</em></h2>
+      <ul class="practice-flow">
+        {practices.map((p) => <li>{p}</li>)}
+      </ul>
+      <p class="body-lg">If people search for the help you give, there’s a GOAT in your market. The only question is whether it’s you.</p>
+    </div>
+  </section>
+
+  <!-- DESIRE: the Code -->
+  <section class="band band-dark code" id="code" aria-labelledby="code-h">
+    <div class="wrap">
+      <header class="sec-head">
+        <h2 id="code-h">The <em>Code.</em></h2>
+        <p>No agency nonsense. How we work, in writing, so you can hold us to it.</p>
+      </header>
+      <div class="code-grid">
+        {code.map((c) => (
+          <div class="code-item"><h3>{c.head}</h3><p>{c.body}</p></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- DESIRE: the founder -->
+  <section class="band band-light founder" id="founder" aria-labelledby="founder-h">
+    <div class="wrap founder-grid">
+      <h2 id="founder-h" class="statement">Fifty years in. <em>Still early.</em></h2>
+      <div class="founder-copy">
+        <p class="body-lg">Jeff Folkersen was there when the web began. He wrote documentation for HotDog, one of the first visual web editors. He spent seventeen years running the retail systems behind HSN, and sat across the table from Google over the hsn.com product feed.</p>
+        <p class="body-lg">Now he builds the machine that puts law firms in front of the people who need them: search, AI, maps, social and video, run on his own servers, answerable to one person. You.</p>
+        <p class="sign">Jeff Folkersen, founder</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACTION -->
+  <section class="close" aria-labelledby="close-h">
+    <div class="wrap narrow close-inner">
+      <h2 id="close-h">Every town has one GOAT. <em>Might as well be you.</em></h2>
+      <p>Now you know.</p>
+      <a class="btn btn-gold" href="#inside">Get the inside track</a>
+    </div>
+  </section>
 </Base>
+
+<script>
+  // Office video: play unless reduced motion.
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const office = document.getElementById('office') as HTMLVideoElement | null;
+  if (office) { if (reduce) office.pause(); else office.play().catch(() => {}); }
+
+  // Tanngrisnir: turn + wink once, then hold the stare. Safari cannot show transparent WebM, so it keeps the still.
+  const gw = document.getElementById('goat') as HTMLElement;
+  const tg = document.getElementById('tgv') as HTMLVideoElement | null;
+  const ua = navigator.userAgent;
+  const isSafari = /Safari\//.test(ua) && !/(Chrome|Chromium|CriOS|Edg|Firefox|FxiOS)\//.test(ua);
+  if (tg && !reduce && !isSafari) {
+    let started = false;
+    const go = () => {
+      if (started) return; started = true;
+      setTimeout(() => { tg.play().then(() => gw.classList.add('live')).catch(() => {}); }, 900);
+    };
+    if (tg.readyState >= 3) go(); else tg.addEventListener('canplaythrough', go, { once: true });
+  }
+
+  // Subtle parallax between the goat and the room.
+  if (!reduce && window.matchMedia('(pointer: fine)').matches) {
+    const sky = document.getElementById('sky') as HTMLElement;
+    let tx = 0, ty = 0, cx = 0, cy = 0;
+    window.addEventListener('pointermove', (e) => { tx = e.clientX / innerWidth - .5; ty = e.clientY / innerHeight - .5; }, { passive: true });
+    const frame = () => {
+      cx += (tx - cx) * .05; cy += (ty - cy) * .05;
+      gw.style.translate = `${(cx * 14).toFixed(2)}px ${(cy * 6).toFixed(2)}px`;
+      sky.style.transform = `translate3d(${(cx * -10).toFixed(2)}px, ${(cy * -5).toFixed(2)}px, 0) scale(1.02)`;
+      requestAnimationFrame(frame);
+    };
+    frame();
+  }
+
+  // Gap-check form: posts to the shared handler; works without JavaScript too (303 to a thanks page later).
+  document.querySelectorAll<HTMLFormElement>('[data-form]').forEach((f) => {
+    const ts = f.querySelector<HTMLInputElement>('input[name="ts"]'); if (ts) ts.value = String(Date.now());
+    const status = f.querySelector('[data-form-status]') as HTMLElement;
+    f.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      status.textContent = 'Sending…';
+      try {
+        const r = await fetch(f.action, { method: 'POST', body: new FormData(f), headers: { Accept: 'application/json' } });
+        const j = await r.json().catch(() => ({}));
+        if (r.ok && j.ok) { f.reset(); status.textContent = 'Got it. Jeff will be in touch personally.'; }
+        else status.textContent = j.error || 'That did not go through. Please try again in a minute.';
+      } catch { status.textContent = 'That did not go through. Please try again in a minute.'; }
+    });
+  });
+</script>

@@ -37,3 +37,10 @@ Facts used, all from Jeff's own statements, to be confirmed by him: 27-year clie
 - Repo `Jurisbranded/jurisbranded-site` is Public; other site repos are private. Switch to Private.
 - Jeff to confirm the facts used on the home page (see "Home page first pass"), especially "Your competitors are not our clients."
 - Forms: Turnstile widget + `TURNSTILE_SECRET`, and add `jurisbranded.com` to the n8n SITES table.
+
+## Privacy Center copied in (2026-11-10)
+
+- `public/privacy-center/` is a verbatim copy of the live Privacy Center on jurisbranded.com (YGGY, `/opt/jurisbranded/site/privacy-center/`): hub, Privacy Policy (with the 10DLC Text Messages (SMS) section and the Messenger/Instagram data-deletion section Meta points to), Cookie Policy, Opt-Out Preferences, Terms and Conditions (SMS terms), Disclaimer, Imprint, Media Credits. Static, self-contained pages; `favicon-32.png` copied alongside.
+- `public/_redirects`: `/privacy/` and `/privacy-policy/` and `/data-deletion/` 301 into the Privacy Center, matching the live redirects.
+- The Meta app "JB Chat Inbox" links `/privacy-center/privacy-policy/`, `/privacy-center/terms-and-conditions/` and `/privacy-center/privacy-policy/#data-deletion`. Keep those URLs when this rebuild replaces the PHP site.
+- Forms: `public/js/sms-consent.js` (loaded by `Base.astro`) adds the optional, unchecked 10DLC SMS opt-in to any form with a phone field. The shared contact handler passes it as `sms_consent`.
